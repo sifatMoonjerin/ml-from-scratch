@@ -11,7 +11,7 @@ fig = plt.figure(figsize=(8,6))
 plt.scatter(X[:, 0], y, color = "b", marker = "o", s = 30)
 plt.show()
 
-reg = LinearRegression(lr=0.01)
+reg = LinearRegression()
 reg.fit(X_train,y_train)
 predictions = reg.predict(X_test)
 
@@ -20,3 +20,11 @@ def mse(y_test, predictions):
 
 mse = mse(y_test, predictions)
 print(mse)
+
+y_pred_line = reg.predict(X)
+cmap = plt.get_cmap('viridis')
+fig = plt.figure(figsize=(8,6))
+m1 = plt.scatter(X_train, y_train, color=cmap(0.9), s=10)
+m2 = plt.scatter(X_test, y_test, color=cmap(0.5), s=10)
+plt.plot(X, y_pred_line, color='black', linewidth=2, label='Prediction')
+plt.show()
